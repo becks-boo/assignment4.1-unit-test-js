@@ -11,6 +11,6 @@ describe("Filter function", () => {
         let s = new Search(testInput);
         let actual = s.filterByTitle("Title");
 
-        expect(actual.length === 3);
+        expect(actual.length).toEqual(3);
     });
 });
