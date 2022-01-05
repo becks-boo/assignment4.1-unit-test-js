@@ -1,4 +1,5 @@
 class Search {
+    searchableObjects;
 
     /**
      * @example searchableObjects = [
@@ -13,24 +14,41 @@ class Search {
     }
 
     filterByTitle(title) {
+        if (!title) throw Error("Please type in a title.");
+        const lowerCaseTitle = title.toLowerCase();
+
         return this.searchableObjects.filter(element => {
-            return element.title.includes(title);
+            const loweredElementTitle = element.title.toLowerCase();
+
+            return loweredElementTitle.includes(lowerCaseTitle);
         });
     }
 
     filterByUrl(url) {
-        return []; // @TODO implement similarly to filterByTitle
+        const lowerCaseUrl = url.toLowerCase();
+
+        return this.searchableObjects.filter(element => {
+            const loweredElementUrl = element.url.toLowerCase();
+
+            return loweredElementUrl.includes(lowerCaseUrl);
+        }); // @TODO implement similarly to filterByTitle
     }
 
     getById(id) {
-        return []; // @TODO implement similarly to filterByTitle (careful! id is an integer, not a string!)
+        return this.searchableObjects.filter(element => {
+            if (element.id === id) {
+                return element.id;
+            }
+        }); // @TODO implement similarly to filterByTitle (careful! id is an integer, not a string!)
     }
 
     addSearchableObject(object) {
+        this.searchableObjects.push(object);
+        // return this.searchableObjects;
         // @TODO push object into array
     }
 
-    getSearchableObject() {
+    getSearchableObjects() {
         return this.searchableObjects;
     }
 }
